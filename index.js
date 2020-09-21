@@ -2,7 +2,9 @@
 
 // function getFormText() {
 
-let amount = 'hello'
+let amount = ""
+let ticker = ""
+let date = ""
 
 const form = document.querySelector('.form');
 // const username = document.querySelector('#username');
@@ -10,20 +12,18 @@ const form = document.querySelector('.form');
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  
-  // console.log('form submitted');
-  // console.log(username.value);
-  console.log(amount);
-  amount = form.amount.value
-  // console.log(typeof(form.ticker.value));
-  // console.log(typeof(form.date.value));
-  console.log(amount);
-
-  
-
+  getInputData()
+  display()
 });
 
 function getInputData() {
   amount = form.amount.value
+  ticker = form.ticker.value
+  date = form.date.value
 }
-console.log(amount);
+
+function display() {
+  console.log(amount);
+  console.log(ticker);
+  console.log(date);
+}
