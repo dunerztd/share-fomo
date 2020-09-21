@@ -33,10 +33,26 @@ function sharesPurchased(x) {
 }
 
 function getTodaysDate() {
-  let today = new Date();
-  let today_date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  console.log(today_date);
+  let today_date = new Date();
+  let dd
+
+  switch(today_date.getDay()) {
+    case 0:
+      dd = String(today_date.getDate() - 2).padStart(2, '0');
+      break;
+    case 1:
+      dd = String(today_date.getDate() - 3).padStart(2, '0');
+      break;
+    default:
+      dd = String(today_date.getDate() - 1).padStart(2, '0');
+  }
+
+  let mm = String(today_date.getMonth() + 1).padStart(2, '0');
+  let yyyy = today_date.getFullYear();
+
+  today_date = yyyy + '-' + mm + '-' + dd
   today_date_main = today_date
+  console.log(today_date_main);
 }
 
 function currentSharePrice(x) {
@@ -44,8 +60,7 @@ function currentSharePrice(x) {
   fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${ticker}&outputsize=full&apikey=NT8P50P5AD25XXZW`)
     .then(response => response.json())
     .then((data) => {
-      console.log(today_date_main);
-      console.log(data);
+
       let today_adjusted_close = parseFloat(data['Time Series (Daily)'][today_date_main]['5. adjusted close'])
       // console.log(x['Time Series (Daily)'][today_date]);
       
