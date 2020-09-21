@@ -1,19 +1,16 @@
-// document.getElementById("sub-btn").addEventListener("click", getFormText);
-
-// function getFormText() {
-
 let amount = ""
 let ticker = ""
 let date = ""
 
 const form = document.querySelector('.form');
-// const username = document.querySelector('#username');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
 
   getInputData()
-  display()
+  // display()
+
+
 });
 
 function getInputData() {
