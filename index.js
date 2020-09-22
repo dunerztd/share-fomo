@@ -46,6 +46,21 @@ function displayFomoValue(x){
 function removeFomoValue(x){
   const content = document.querySelector('.fomo_value');
   content.innerHTML = ``;
+  // also removes profit_loss value
+  document.getElementById("profit_loss").innerHTML = ``
+}
+
+function displayProfitOrLoss() {
+  let content = document.getElementById("profit_loss")
+  let profit_loss = total_share_value_main - amount
+
+  if (profit_loss > 0) {
+    content.innerHTML = `<p class="profit">That's a profit of $ ${profit_loss.toFixed(2)}</p>`
+  } else {
+    profit_loss = Math.abs(profit_loss)
+    content.innerHTML = `<p class="loss">That's a loss of $ ${profit_loss.toFixed(2)}</p>`
+  }
+
 }
 
 function sharesPurchased(x) {
@@ -90,6 +105,7 @@ function mostRecentSharePrice(x) {
     })
     .then(todaysShareValue)
     .then(displayFomoValue)
+    .then(displayProfitOrLoss)
 
 
   // let total_value = x * today_adjusted_close

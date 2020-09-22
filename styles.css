@@ -24,3 +24,19 @@
     margin-right: 25%;
     width: 50%;
   }
+
+.profit {
+  text-align: center;
+  font-size: 35px;
+  color: green;
+}
+
+.loss {
+  text-align: center;
+  font-size: 35px;
+  color: red;
+}
+
+h2 {
+  text-align: center;
+}
