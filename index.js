@@ -8,6 +8,8 @@ let date = ""
 let temp = ""
 let total_shares_purchased_main
 let today_date_main = ""
+let today_adjusted_close_main
+let total_share_value_main
 
 const form = document.querySelector('.form');
 // const username = document.querySelector('#username');
@@ -55,18 +57,18 @@ function getTodaysDate() {
   console.log(today_date_main);
 }
 
-function currentSharePrice(x) {
+function mostRecentSharePrice(x) {
 
   fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${ticker}&outputsize=full&apikey=NT8P50P5AD25XXZW`)
     .then(response => response.json())
     .then((data) => {
 
       let today_adjusted_close = parseFloat(data['Time Series (Daily)'][today_date_main]['5. adjusted close'])
-      // console.log(x['Time Series (Daily)'][today_date]);
-      
-      console.log(today_adjusted_close);
-    })
+      today_adjusted_close_main = today_adjusted_close
 
+    })
+    .then(todaysShareValue)
+    .then(console.log)
 
 
   // let total_value = x * today_adjusted_close
@@ -74,12 +76,21 @@ function currentSharePrice(x) {
   // return total_value
 }
 
+function todaysShareValue() {
+  total_share_value_main = total_shares_purchased_main * today_adjusted_close_main
+  return parseFloat(total_share_value_main.toFixed(2))
+  // console.log(total_shares_purchased_main);
+  // console.log(today_adjusted_close_main);
+  // console.log(total_share_value_main);
+}
+
 function display() {
   fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${ticker}&outputsize=full&apikey=NT8P50P5AD25XXZW`)
     .then(response => response.json())
     .then(sharesPurchased)
     .then(getTodaysDate)
-    .then(currentSharePrice)
+    .then(mostRecentSharePrice)
+    // .then(todaysShareValue)
     // .then(console.log)
 }
 
