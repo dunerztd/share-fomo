@@ -16,15 +16,36 @@ const form = document.querySelector('.form');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-
+  removeFomoValue()
+  showWaitingMessage()
   getInputData()
   display()
 });
+
+function showWaitingMessage () {
+    var x = document.getElementById("hidden");
+    x.style.display = "block";
+}
+
+function hideWaitingMessage () {
+  var x = document.getElementById("hidden");
+  x.style.display = "none";
+}
 
 function getInputData() {
   amount = form.amount.value
   ticker = form.ticker.value
   date = form.date.value
+}
+
+function displayFomoValue(x){
+  const content = document.querySelector('.fomo_value');
+  content.innerHTML = `<h2>Current Value is $${x} USD</h2>`;
+}
+
+function removeFomoValue(x){
+  const content = document.querySelector('.fomo_value');
+  content.innerHTML = ``;
 }
 
 function sharesPurchased(x) {
@@ -68,7 +89,7 @@ function mostRecentSharePrice(x) {
 
     })
     .then(todaysShareValue)
-    .then(console.log)
+    .then(displayFomoValue)
 
 
   // let total_value = x * today_adjusted_close
@@ -76,8 +97,10 @@ function mostRecentSharePrice(x) {
   // return total_value
 }
 
+
 function todaysShareValue() {
   total_share_value_main = total_shares_purchased_main * today_adjusted_close_main
+  hideWaitingMessage()
   return parseFloat(total_share_value_main.toFixed(2))
   // console.log(total_shares_purchased_main);
   // console.log(today_adjusted_close_main);

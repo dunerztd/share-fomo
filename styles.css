@@ -14,3 +14,13 @@
 .btn {
     margin-top: 50px;
 }
+
+#hidden {
+    display: none;
+}
+
+.center {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+  }
