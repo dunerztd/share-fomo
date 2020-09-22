@@ -23,24 +23,25 @@ form.addEventListener('submit', e => {
 });
 
 function showWaitingMessage () {
-    var x = document.getElementById("hidden");
-    x.style.display = "block";
+  var x = document.getElementById("waiting");
+  x.classList.remove('d-none')
 }
 
 function hideWaitingMessage () {
-  var x = document.getElementById("hidden");
-  x.style.display = "none";
+var x = document.getElementById("waiting");
+x.classList.add('d-none')
 }
 
 function getInputData() {
   amount = form.amount.value
   ticker = form.ticker.value
   date = form.date.value
+  console.log(date)
 }
 
 function displayFomoValue(x){
   const content = document.querySelector('.fomo_value');
-  content.innerHTML = `<h2>Current Value is $${x} USD</h2>`;
+  content.innerHTML = `<h2>Your shares are now worth $${x} USD</h2>`;
 }
 
 function removeFomoValue(x){
@@ -55,10 +56,16 @@ function displayProfitOrLoss() {
   let profit_loss = total_share_value_main - amount
 
   if (profit_loss > 0) {
-    content.innerHTML = `<p class="profit">That's a profit of $ ${profit_loss.toFixed(2)}</p>`
+    content.innerHTML = `<p class="profit">That's a profit of $ ${profit_loss.toFixed(2)}</p>
+    <div class="row justify-content-center" >
+          <img src="profit.webp" alt="" class="src">
+        </div>`
   } else {
     profit_loss = Math.abs(profit_loss)
-    content.innerHTML = `<p class="loss">That's a loss of $ ${profit_loss.toFixed(2)}</p>`
+    content.innerHTML = `<p class="loss">That's a loss of $ ${profit_loss.toFixed(2)}</p>
+    <div class="row justify-content-center" >
+          <img src="loss.webp" alt="" class="src">
+        </div>`
   }
 
 }
