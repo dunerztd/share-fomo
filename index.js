@@ -123,7 +123,7 @@ function displayProfitOrLoss() {
     profit_loss = Math.abs(profit_loss)
     content.innerHTML = `<p class="loss">That's a loss of $ ${profit_loss.toFixed(2)}</p>
     <div class="row justify-content-center" >
-          <img src="loss.webp" alt="" class="src">
+          <img src="loss.gif" alt="" class="src">
         </div>`
   }
 }
